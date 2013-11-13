@@ -1,0 +1,27 @@
+From 02ec703b095f4347d8dfc9e120ce216abf791abd Mon Sep 17 00:00:00 2001
+From: josalaito <josalaito@hotmail.es>
+Date: Wed, 13 Nov 2013 21:19:58 +0100
+Subject: [PATCH] Disable libanalogradiobroadcasting build
+
+---
+ fmradio/jni/Android.mk |    2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/fmradio/jni/Android.mk b/fmradio/jni/Android.mk
+index 1b2643d..c43562e 100644
+--- a/fmradio/jni/Android.mk
++++ b/fmradio/jni/Android.mk
+@@ -1,3 +1,4 @@
++ifeq ($(BOARD_HAVE_FM_RADIO),true)
+ LOCAL_PATH:= $(call my-dir)
+ include $(CLEAR_VARS)
+ 
+@@ -38,4 +39,5 @@ LOCAL_MODULE:= libanalogradiobroadcasting
+ LOCAL_MODULE_TAGS := optional
+ 
+ include $(BUILD_SHARED_LIBRARY)
++endif
+ 
+-- 
+1.7.9.5
+
