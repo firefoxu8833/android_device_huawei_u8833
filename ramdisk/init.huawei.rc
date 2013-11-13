@@ -1,6 +1,9 @@
 import init.huawei.usb.rc
 
 on early-init
+    start ueventd
+    import init.b2g.rc
+
     mount debugfs debugfs /sys/kernel/debug
 
     mkdir /cust
@@ -24,6 +27,11 @@ on early-init
 on emmc-fs
     # Mount mmc partitions
     mount_all /fstab.huawei
+   
+    # B2G permissions
+    chmod 0755 /system/b2g/b2g
+    chmod 0755 /system/b2g/updater
+    chmod 0755 /system/b2g/plugin-container
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
