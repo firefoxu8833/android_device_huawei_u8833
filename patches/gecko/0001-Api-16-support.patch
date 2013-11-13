@@ -1,0 +1,52 @@
+From 89b00a99a107d0faac4a6dbb8565856c239b253b Mon Sep 17 00:00:00 2001
+From: josalaito <josalaito@hotmail.es>
+Date: Wed, 13 Nov 2013 22:00:14 +0100
+Subject: [PATCH] Api 16 support
+
+---
+ widget/gonk/libdisplay/GonkDisplayJB.cpp |    4 ++--
+ widget/gonk/libdisplay/moz.build         |    6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/widget/gonk/libdisplay/GonkDisplayJB.cpp b/widget/gonk/libdisplay/GonkDisplayJB.cpp
+index 97612ae..ea11e65 100644
+--- a/widget/gonk/libdisplay/GonkDisplayJB.cpp
++++ b/widget/gonk/libdisplay/GonkDisplayJB.cpp
+@@ -14,7 +14,7 @@
+  */
+ 
+ #include "GonkDisplayJB.h"
+-#if ANDROID_VERSION == 17
++#if ANDROID_VERSION == 16
+ #include <gui/SurfaceTextureClient.h>
+ #else
+ #include <gui/Surface.h>
+@@ -26,7 +26,7 @@
+ #include <hardware/power.h>
+ #include <suspend/autosuspend.h>
+ 
+-#if ANDROID_VERSION == 17
++#if ANDROID_VERSION == 16
+ #include "GraphicBufferAlloc.h"
+ #endif
+ #include "BootAnimation.h"
+diff --git a/widget/gonk/libdisplay/moz.build b/widget/gonk/libdisplay/moz.build
+index 7ce9e95..ed6902e 100644
+--- a/widget/gonk/libdisplay/moz.build
++++ b/widget/gonk/libdisplay/moz.build
+@@ -31,6 +31,12 @@ elif CONFIG['ANDROID_VERSION'] == '17':
+         'GonkDisplayJB.cpp',
+         'GraphicBufferAlloc.cpp',
+     ]
++elif CONFIG['ANDROID_VERSION'] == '16':
++    SOURCES += [
++        'FramebufferSurface.cpp',
++        'GonkDisplayJB.cpp',
++        'GraphicBufferAlloc.cpp',
++    ]
+ elif CONFIG['ANDROID_VERSION'] == '15':
+     SOURCES += [
+         'GonkDisplayICS.cpp'
+-- 
+1.7.9.5
+
